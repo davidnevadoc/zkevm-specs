@@ -128,7 +128,7 @@ def test_state_keys_non_lexicographic_order():
     ops = [
         StartOp(),
         StorageOp(rw_counter=0, rw=RW.Write, addr=0x12345678, key=0x1112, value=RLC(98765, r).expr()),
-        StorageOp(rw_counter=0, rw=RW.Write, addr=0x12345678, key=0x1111, value=RLC(789, r).expr()),
+        StorageOp(rw_counter=1, rw=RW.Write, addr=0x12345678, key=0x1111, value=RLC(789, r).expr()),
     ]
     # fmt: on
     verify(ops, randomness, success=False)
@@ -137,7 +137,7 @@ def test_state_keys_non_lexicographic_order():
     ops = [
         StartOp(),
         StorageOp(rw_counter=0, rw=RW.Write, addr=0x12345678, key=2 << 250, value=RLC(98765, r).expr()),
-        StorageOp(rw_counter=0, rw=RW.Write, addr=0x12345678, key=1 << 250, value=RLC(789, r).expr()),
+        StorageOp(rw_counter=1, rw=RW.Write, addr=0x12345678, key=1 << 250, value=RLC(789, r).expr()),
     ]
     # fmt: on
     verify(ops, randomness, success=False)
